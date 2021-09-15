@@ -15,7 +15,7 @@ const Home = () => {
     {}
   )
 
-  const { data, isLoadingNext, loadNext } = usePaginationFragment<PostListPaginationQuery, Home_posts$key>(
+  const { data, isLoadingNext, hasNext, loadNext } = usePaginationFragment<PostListPaginationQuery, Home_posts$key>(
     graphql`
       fragment Home_posts on Query
       @refetchable(queryName: "PostListPaginationQuery")
@@ -82,7 +82,11 @@ const Home = () => {
           </li>
         ))}
       </ul>
-      {isLoadingNext ? 'loading' : <button onClick={() => loadNext(10)}>Load more post</button>}
+      {
+        isLoadingNext ? 'loading' :
+        hasNext ? <button onClick={() => loadNext(10)}>Load more post</button> :
+        null
+      }
     </>
   )
 }
