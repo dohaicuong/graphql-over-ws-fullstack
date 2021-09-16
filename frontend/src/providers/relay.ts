@@ -12,15 +12,16 @@ import { createClient } from 'graphql-ws'
 
 const subscriptionsClient = createClient({
   url: 'ws://localhost:4000/graphql',
+  lazy: false,
   connectionParams: () => {
     return {}
     // const session = getSession();
     // if (!session) {
-    //   return {};
+    //   return {}
     // }
     // return {
     //   Authorization: `Bearer ${session.token}`,
-    // };
+    // }
   },
 })
 
